@@ -1,0 +1,14 @@
+For 22/10/2016
+
+For correctness of program:
+
+Need to extend search such that it tries combination for 2 words first
+and continues with more words that it is combining.
+
+Currently its only running combinations of 3 words.
+If the anagram was not a combination of 3 words the program would not find it currently.
+
+For optimization of program:
+
+Setup for the program to run in multiple processes.
+Find way to setup computation to use numpy arrays.
