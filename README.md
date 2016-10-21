@@ -45,6 +45,37 @@ Cons:
 
 
 
+19:00 thoughts
+Im unsure of what would be faster for eliminating invalid words.
+The amount of words in the clean list is now 1787 after some preprocessing.
+
+Trying to append the remaining words together combinatorially and checking the dictionary
+of the anagram sentence if there are one too many of one character could be done.
+Pros:
+- It can avoid search on combinations has to many of one character.
+Cons:
+- It is alot of read and writes to dictionaries.
+
+
+Another approach would be to multiply the prime products sums together and compare with
+prime product sum of anagram sentence. This approach does not use the fact that a character
+cant be repeated more times then in the anagram sentence.
+Pros:
+- The check for words combined that are larger is can be done fast
+because if the product of the two words are larger then the anagram sentence sum
+the combination is invalid.
+Cons:
+- Refined bruteforce.
+
+Note:
+The dublicates are being removed with the dictionary. Mabye this is a problem.
+
+
+
+
+
+
+
 
 
 

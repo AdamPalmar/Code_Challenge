@@ -1,9 +1,6 @@
 import numpy
 from fileIO import file_reader
 
-def seach_for_combination(anagram_product_sum,dict_prime_sums):
-    for tuple in dict_prime_sums:
-        pass
 
 def sort_dict(dict_prime_sums):
     return sorted(dict_prime_sums.items(), key=lambda x: x[1])
@@ -52,19 +49,22 @@ def dict_prime_numbers_to_anagram_character(anagram_sentence):
     return dict_of_prime_number_mapping
 
 
-anagram_sentence = "poultryoutwitsants"
+def get_sorted_dict_char_to_prime(path_to_file, anagram_sentence="poultryoutwitsants"):
+    dict_prime_char = dict_prime_numbers_to_anagram_character(anagram_sentence)
 
-dict_prime_char = dict_prime_numbers_to_anagram_character(anagram_sentence)
+    dict_word_prime_sums = dict_words_to_prime_product_sums(file_reader.read_file_into_list(path_to_file),
+                                                            dict_prime_char)
 
-dict_word_prime_sums = dict_words_to_prime_product_sums(file_reader.read_file_into_list("../clean_wordlist"),
-                                                        dict_prime_char)
+    sorted_dict = sort_dict(dict_word_prime_sums)
 
-product_sum = prime_product_sum_of_anagram_sentence(anagram_sentence, dict_prime_char)
+    return sorted_dict
 
 
-sorted_dict = sort_dict(dict_word_prime_sums)
+def get_product_sum_anagram_sentence(anagram_sentence="poultryoutwitsants"):
+    dict_prime_char = dict_prime_numbers_to_anagram_character(anagram_sentence)
+    return prime_product_sum_of_anagram_sentence(anagram_sentence, dict_prime_char)
 
-for tuple in sorted_dict:
-    print(tuple)
-print(sorted_dict)
-print(product_sum)
+# for tuple in sorted_dict:
+#     print(tuple)
+# print(sorted_dict)
+# print(product_sum)
