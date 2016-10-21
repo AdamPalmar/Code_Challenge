@@ -2,9 +2,7 @@
 # The problem
 I see the problem as two folded.
 
-Problem 1.
 - Find words that is an anagram of "poultry outwits ants"
-Problem 2.
 - The specific anagram must hash to 4624d200580677270a54ccff86b9610e
 
 #Anagram definition
@@ -44,6 +42,8 @@ Pros:
 Cons:
 - Preproccesing is needed, the amount of unique characters needs to be know.
 - Adding more characters would require a new map to integers.
+
+
 
 
 
