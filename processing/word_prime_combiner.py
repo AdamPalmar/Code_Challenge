@@ -18,6 +18,7 @@ def seach_for_combination(anagram_product_sum, dict_prime_sums):
         for tuple2 in dict_prime_sums:
             for tuple3 in dict_prime_sums:
                 product_sum = tuple1[1] * tuple2[1] * tuple3[1]
+
                 if (product_sum == anagram_product_sum):
-                    print(tuple1, tuple2, tuple3)
+                    # print(tuple1, tuple2, tuple3)
                     check_three_tuples(tuple1, tuple2, tuple3)
