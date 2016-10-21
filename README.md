@@ -33,38 +33,50 @@ Doing bruteforce on the problem would worst case be 18! which is 6.4023737e+15.
 
 If the words are converted into an integer form i could leverage the numpy lib when finding potential
 that could make anagrams.
+
 Pros:
+
 - Numpy does linear algebra computations very fast.
 - With the integer convertion the order might not matter
   if added or multiplied together.
 - It can be done in parallel on multiple cores of even GPU.
 
 Cons:
+
 - Preproccesing is needed, the amount of unique characters needs to be know.
 - Adding more characters would require a new map to integers.
 
 
 
-19:00 thoughts
+19:00 thoughts:
+
 Im unsure of what would be faster for eliminating invalid words.
 The amount of words in the clean list is now 1787 after some preprocessing.
 
 Trying to append the remaining words together combinatorially and checking the dictionary
 of the anagram sentence if there are one too many of one character could be done.
+
 Pros:
+
 - It can avoid search on combinations has to many of one character.
+
 Cons:
+
 - It is alot of read and writes to dictionaries.
 
 
 Another approach would be to multiply the prime products sums together and compare with
 prime product sum of anagram sentence. This approach does not use the fact that a character
 cant be repeated more times then in the anagram sentence.
+
 Pros:
+
 - The check for words combined that are larger is can be done fast
 because if the product of the two words are larger then the anagram sentence sum
 the combination is invalid.
+
 Cons:
+
 - Refined bruteforce.
 
 Note:
