@@ -1,6 +1,8 @@
 from preproccessing import word_prime_converter as wpc
-from processing import word_prime_combiner
+from preproccessing import wordlist_cleaner
 
+from processing import word_prime_combiner
+import time
 
 class Solver:
     """
@@ -29,11 +31,18 @@ class SingleCpuSolver(Solver):
         self._attributes = kwargs
 
     def solve_anagram(self):
+        wordlist_cleaner.clean_wordlist(anagram_sentence="poultry outwits ants",
+                                        path_to_wordlist="../wordlist",
+                                        path_to_clean_wordlist="../clean_wordlist_invalid_num_chars")
         word_prime_combiner.seach_for_combination(wpc.get_product_sum_anagram_sentence(),
                                                   wpc.get_sorted_dict_char_to_prime("../clean_wordlist_invalid_num_chars"))
 
 
+
+
 if __name__ == "__main__":
     solver = SingleCpuSolver()
+    t = time.time()
     solver.solve_anagram()
+    print(time.time() - t)
 

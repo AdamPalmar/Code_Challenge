@@ -83,6 +83,14 @@ Note:
 The dublicates are being removed with the dictionary. Mabye this is a problem.
 
 
+22:30 thoughts
+It has become clear that im doing 6 times the amount of hashes for matching.
+that is necessary, Ups.
+
+Still thinking of a way to do computation with vector or matrix multiplications.
+I speed would improve greatly because the computations can be off loaded to c-code with numpy.
+
+
 
 
 

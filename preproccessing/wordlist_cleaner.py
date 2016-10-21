@@ -43,8 +43,7 @@ def remove_words_with_too_many_of_one_char(list_of_words, anagram_sentence):
 
     for word in list_of_words:
         dict_current_word = dict()
-        # Todo: fix indexing
-        for char in word[:-1]:
+        for char in word:
             dict_current_word[char] = value_to_increment_to_in_dict(dict_current_word, char)
             if dict_current_word[char] > d[char]:
                 break
@@ -52,13 +51,13 @@ def remove_words_with_too_many_of_one_char(list_of_words, anagram_sentence):
             list_of_clean_words.append(word)
             continue
 
-    print(d)
-    print(len(list_of_clean_words))
     return list_of_clean_words
 
-# For removing non valid words from list.
 
-# l = remove_words_with_invalid_char(file_reader.read_file_into_list(), "poultry outwits ants\n")
-# file_writer.write_list_into_file(l, "../clean_wordlist_invalid_chars")
-# l = remove_words_with_too_many_of_one_char(file_reader.read_file_into_list("../clean_wordlist"), "poultryoutwitsants")
-# file_writer.write_list_into_file(l, "../clean_wordlist_invalid_num_chars")
+# For removing non valid words from list.
+def clean_wordlist(anagram_sentence, path_to_wordlist, path_to_clean_wordlist="clean_wordlist_invalid_num_chars"):
+    temp_file_path = "../clean_wordlist"
+    l = remove_words_with_invalid_char(file_reader.read_file_into_list(path_to_wordlist), anagram_sentence)
+    file_writer.write_list_into_file(l, temp_file_path)
+    l = remove_words_with_too_many_of_one_char(file_reader.read_file_into_list(temp_file_path), anagram_sentence)
+    file_writer.write_list_into_file(l, path_to_clean_wordlist)
