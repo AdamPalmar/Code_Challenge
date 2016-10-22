@@ -18,5 +18,3 @@ def remove_empty_space_in_list(list_of_words):
 
 
 
-print(os.getcwd())
-print(os.path)

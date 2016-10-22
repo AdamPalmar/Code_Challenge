@@ -48,7 +48,7 @@ Cons:
 
 
 
-19:00 thoughts:
+21/10/2016 19:00 thoughts:
 
 Im unsure of what would be faster for eliminating invalid words.
 The amount of words in the clean list is now 1787 after some preprocessing.
@@ -83,12 +83,24 @@ Note:
 The dublicates are being removed with the dictionary. Mabye this is a problem.
 
 
-22:30 thoughts
+21/10/2016 22:30 thoughts:
+
 It has become clear that im doing 6 times the amount of hashes for matching.
 that is necessary, Ups.
 
 Still thinking of a way to do computation with vector or matrix multiplications.
 I speed would improve greatly because the computations can be off loaded to c-code with numpy.
+
+#Ideas for optimization
+22/10/2016 15:30 thoughts:
+The part of the program that need optimizing is the processing section.
+Currently its brute forcing to find solution.
+In the search for product sum of the anagram sentence maybe a binary search could be used on the last loop.
+because there wil only be one value multiplied that will give the sum.
+Another idea would be to have a tree structure of the prime products combinations that would
+sum to the wanted product.
+
+
 
 
 
