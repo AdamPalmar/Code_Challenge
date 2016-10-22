@@ -34,8 +34,8 @@ class SingleCpuSolver(Solver):
         wordlist_cleaner.clean_wordlist(anagram_sentence="poultry outwits ants",
                                         path_to_wordlist="../wordlist",
                                         path_to_clean_wordlist="../clean_wordlist_invalid_num_chars")
-        word_prime_combiner.seach_for_combination(wpc.get_product_sum_anagram_sentence(),
-                                                  wpc.get_sorted_dict_char_to_prime("../clean_wordlist_invalid_num_chars"))
+        word_prime_combiner.search_for_combination(wpc.get_product_sum_anagram_sentence(),
+                                                   wpc.get_sorted_list_tuple_char_to_prime("../clean_wordlist_invalid_num_chars"))
 
 
 
