@@ -18,7 +18,7 @@ The words combined must therefore have this number of characters:
 a : 1
 i : 1
 o : 2
-w : 1
+w : 12
 t : 3
 u : 2
 l : 1
