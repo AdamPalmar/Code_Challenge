@@ -1,0 +1,5 @@
+py.test --cov=test_word_prime_converter.py --cov=preproccessing --cov=fileIO --cov=md5_hashing --cov=processing --cov=solvers --cov=prime_number_generator --cov=utilities --cov-report=term --pep8 --flakes --mccabe
+
+When running the script be in the
+path : Code_Challange/tests
+It is a bit clunky.

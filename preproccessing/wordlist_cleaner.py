@@ -54,10 +54,11 @@ def remove_words_with_too_many_of_one_char(list_of_words, anagram_sentence):
 
 
 # For removing non valid words from list.
-#Todo: refactor method so it can be tested
+# Todo: refactor method so it can be tested
 def clean_wordlist(anagram_sentence, path_to_wordlist, path_to_clean_wordlist="clean_wordlist_invalid_num_chars"):
     temp_file_path = "../clean_wordlist"
-    l = remove_words_with_invalid_char(file_reader.read_file_into_list(path_to_wordlist), anagram_sentence)
-    file_writer.write_list_into_file(l, temp_file_path)
-    l = remove_words_with_too_many_of_one_char(file_reader.read_file_into_list(temp_file_path), anagram_sentence)
-    file_writer.write_list_into_file(l, path_to_clean_wordlist)
+    l_1 = remove_words_with_invalid_char(file_reader.read_file_into_list(path_to_wordlist), anagram_sentence)
+    file_writer.write_list_into_file(l_1, temp_file_path)
+    l_2 = remove_words_with_too_many_of_one_char(file_reader.read_file_into_list(temp_file_path), anagram_sentence)
+    file_writer.write_list_into_file(l_2, path_to_clean_wordlist)
+    return l_1, l_2

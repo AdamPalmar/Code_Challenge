@@ -48,7 +48,7 @@ def get_sorted_list_tuple_char_to_prime(path_to_file, anagram_sentence="poultryo
     dict_word_prime_sums = dict_words_to_prime_product_sums(file_reader.read_file_into_list(path_to_file),
                                                             dict_prime_char)
 
-    sorted_dict = utility.sort_dict(dict_word_prime_sums)
+    sorted_dict = utility.get_sorted_list_of_tuple_from_dict(dict_word_prime_sums)
 
     return sorted_dict
 

@@ -19,8 +19,7 @@ possible to stop looping over not viable combination.
 
 -----For testing of the program------
 
-Create unit-test cases that can be run.
-Also make tests that shows coverage of program.
+Test on parts of file_writer, file_reader, wordlist_cleaner missing.
 
 
 
