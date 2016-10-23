@@ -3,6 +3,8 @@ from fileIO import file_writer
 from processing import binary_search, numpy_processing
 from preproccessing import wordlist_cleaner as wlc
 
+from profiler import line_profiling
+
 import time
 
 
@@ -103,7 +105,8 @@ def search_multi_core_binary_search(anagram_product_sum,
                             return result_sentence
 
 
-# Todo: work in progress
+# Todo: remember to remove
+@line_profiling.profile(follow=[])
 def search_multi_core_binary_search_numpy(anagram_product_sum,
                                           list_tuple_word_prime,
                                           chunk_index_start,

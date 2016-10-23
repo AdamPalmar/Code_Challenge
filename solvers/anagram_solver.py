@@ -2,6 +2,7 @@ from preproccessing import word_prime_converter as wpc
 from preproccessing import wordlist_cleaner
 from processing import search_algoritms
 from ctypes import c_char_p
+from profiler import line_profiling
 import multiprocessing
 
 import time
@@ -194,7 +195,7 @@ class MultipleCpuSolverBinaryNumpySearch(Solver):
         return result_sentence.value
 
 
-if __name__ == "__main__":
+def main():
     # solver = MultipleCpuSolverBinarySearch()
     solver = MultipleCpuSolverBinaryNumpySearch()
 
@@ -203,3 +204,7 @@ if __name__ == "__main__":
     solver.solve_anagram("poultry outwits ants", "../wordlist")
     print(time.time() - t, "time")
     print("Done")
+
+
+if __name__ == "__main__":
+    main()
