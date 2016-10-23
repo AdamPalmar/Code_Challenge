@@ -1,5 +1,4 @@
 from preproccessing import word_prime_converter as wpc
-import os
 
 
 # py.test --cov=test_word_prime_converter.py
@@ -45,9 +44,7 @@ def test_dict_prime_numbers_to_anagram_character():
 
 
 def test_get_sorted_dict_char_to_prime():
-    # Todo: Fix reference to file.
-    # Currently based on where the test is called from. No good.
-    path_to_file = str(os.getcwd()) + "/test_preproccessing/file_char_to_prime"
+    list_of_words = ["abc", "ab", "ac", "a", "b", "c"]
 
     anagram_sentence = "abc ab c"
 
@@ -59,7 +56,7 @@ def test_get_sorted_dict_char_to_prime():
                      ("ac", a * c),
                      ("abc", a * b * c)]
 
-    result_dict = wpc.get_sorted_list_tuple_char_to_prime(path_to_file,
+    result_dict = wpc.get_sorted_list_tuple_char_to_prime(list_of_words,
                                                           anagram_sentence)
     assert result_dict == expected_dict
 

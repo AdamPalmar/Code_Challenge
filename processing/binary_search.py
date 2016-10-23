@@ -24,7 +24,6 @@ def search_list_tuple(list_tuple_prime_sums, value_to_find):
 
 
 def search_array(array_prime_sums, value_to_find):
-
     top = len(array_prime_sums) - 1
     bottom = 0
 
@@ -45,8 +44,8 @@ def search_array(array_prime_sums, value_to_find):
     return -1
 
 
-def get_list_of_same_neighbors_for_array(list_tuple_word_prime, array_of_prime_sums, top_ref_array, bot_ref_array,
-                                         index):
+def get_list_same_products_from_array(list_tuple_word_prime, array_of_prime_sums, top_ref_array, bot_ref_array,
+                                      index):
     # list_tuple_word_prime[0] == word
     # list_tuple_word_prime[1] == prime_product_sum
 
@@ -57,6 +56,12 @@ def get_list_of_same_neighbors_for_array(list_tuple_word_prime, array_of_prime_s
     bot_index = index - 1
 
     list_of_same_neighbors = list()
+
+    word_one, word_two = numpy_processing.get_words_from_list_in_arrays(list_tuple_word_prime,
+                                                                        top_ref_array,
+                                                                        bot_ref_array,
+                                                                        index)
+    list_of_same_neighbors.append((word_one, word_two))
 
     while top_index < length_of_array:
         if array_of_prime_sums[top_index] == array_value_to_look_form:

@@ -1,4 +1,5 @@
-from processing import binary_search
+from processing import binary_search as search
+from processing import numpy_processing as npp
 import numpy as np
 
 
@@ -9,7 +10,7 @@ def test_binary_search_of_array():
     list_of_results = list()
 
     for num in look_for_values:
-        index_of_value = binary_search.search_array(numpy_array, num)
+        index_of_value = search.search_array(numpy_array, num)
         list_of_results.append(index_of_value)
     print("Result ", list_of_results)
     assert list_of_results == expected_index_of_values
@@ -21,7 +22,7 @@ def test_binary_search_not_in_array():
     look_for_values = [-1, 1, 4, 100]
     list_of_results = list()
     for num in look_for_values:
-        index_of_value = binary_search.search_array(numpy_array, num)
+        index_of_value = search.search_array(numpy_array, num)
         list_of_results.append(index_of_value)
 
     assert list_of_results == expected_index_of_values
@@ -39,7 +40,7 @@ def test_binary_search_of_list_of_tuple():
     list_of_results = list()
 
     for num in look_for_values:
-        index_of_value = binary_search.search_list_tuple(list_of_tuple, num)
+        index_of_value = search.search_list_tuple(list_of_tuple, num)
         list_of_results.append(index_of_value)
 
     assert list_of_results == expected_index_of_values
@@ -57,37 +58,52 @@ def test_binary_search_not_in_list_of_tuple():
     list_of_results = list()
 
     for num in look_for_values:
-        index_of_value = binary_search.search_list_tuple(list_of_tuple, num)
+        index_of_value = search.search_list_tuple(list_of_tuple, num)
         list_of_results.append(index_of_value)
 
     assert list_of_results == expected_index_of_values
 
 
 def test_get_list_of_neighbors_from_array_top_case():
-    a, b, c, d, e = 2, 3, 5, 7, 11
-    list_tuple_word_prime = [("a", a),
-                             ("b", b),
-                             ("c", c),
-                             ("d", d),
-                             ("e", e),
-                             ("ae", a * e),
-                             ("ea", e * a)]
+    a, b, c = 2, 3, 5
 
-    array_prime_sums = np.array([a, b, c, d, e, a * e, e * a])
+    aba = a * b * a
+    aab = a * a * b
+    baa = b * a * a
+    abc = a * b * c
 
-    index = binary_search.search_array(array_prime_sums=array_prime_sums,
-                                       value_to_find=a * e)
+    list_of_tuple = [("aba", aba),
+                     ("aab", aab),
+                     ("baa", baa),
+                     ("abc", abc)]
 
-    neighbors = binary_search.get_list_of_same_neighbors_for_array(list_tuple_word_prime=list_tuple_word_prime,
-                                                                   array_of_prime_sums=array_prime_sums,
-                                                                   index=index)
-    expected_result = ["ae", "ea"]
+    array_of_words = npp.convert_list_tuple_into_numpy_array(list_of_tuple)
 
-    word_found = list_tuple_word_prime[index][0]
+    (array_prime_sums,
+     top_ref_array,
+     bot_ref_array) = npp.get_prime_product_of_arrays(4, array_of_words)
 
-    neighbors.append(word_found)
+    permutation = array_prime_sums.argsort()
 
-    assert expected_result == neighbors
+    array_prime_sums = array_prime_sums[permutation]
+    top_ref_array = top_ref_array[permutation]
+    bot_ref_array = bot_ref_array[permutation]
+
+    print("array of words", array_of_words)
+    print("array of prime sums", array_prime_sums)
+
+    index = search.search_array(array_prime_sums, aba * aab)
+
+    print(top_ref_array[1])
+    neighbors_list = search.get_list_same_products_from_array(list_of_tuple,
+                                                              array_prime_sums,
+                                                              top_ref_array,
+                                                              bot_ref_array,
+                                                              index)
+
+    expected_result = [("aab", "baa"), ("aba", "baa"), ("aba", "aab")]
+
+    assert expected_result == neighbors_list
 
 
 def test_get_list_of_neighbors_from_array_bottom_case():

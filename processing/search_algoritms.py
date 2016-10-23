@@ -20,7 +20,6 @@ def check_three_words(word_one, word_two, word_three, md5_hash="4624d20058067727
     word_hash = md5_hasher.md5_hash_sentence(word_one + " " + word_two + " " + word_three)
 
     if word_hash == md5_hash:
-        print("--------Found the hash------", word_one, word_two, word_three)
         return True
     else:
         return False
@@ -104,8 +103,7 @@ def search_multi_core_binary_search(anagram_product_sum,
                             return result_sentence
 
 
-
-#Todo: work in progress
+# Todo: work in progress
 def search_multi_core_binary_search_numpy(anagram_product_sum,
                                           list_tuple_word_prime,
                                           chunk_index_start,
@@ -120,7 +118,12 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
      top_ref_word,
      bot_ref_word) = numpy_processing.get_prime_product_of_arrays(num_words, array_of_word_values)
 
-    # product_array = numpy_processing.sort_array(product_array)
+    permutation = product_array.argsort()
+
+    product_array = product_array[permutation]
+    top_ref_word = top_ref_word[permutation]
+    bot_ref_word = bot_ref_word[permutation]
+    counter = 0
 
     for index, product_sum in enumerate(array_of_word_values[chunk_index_start: chunk_index_stop]):
 
@@ -133,35 +136,37 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
             index_of_product_array = binary_search.search_array(product_array, int(prime_product_needed))
 
             if index_of_product_array != -1:
-
-                result_shared_mem_ref.value = index_of_product_array
                 word_one = numpy_processing.get_word_from_list_in_array(list_tuple_word_prime, index, chunk_index_start)
 
-                list_of_candidate_words = binary_search.get_list_of_same_neighbors_for_array(list_tuple_word_prime,
-                                                                                             product_array,
-                                                                                             top_ref_word,
-                                                                                             bot_ref_word,
-                                                                                             index + chunk_index_start)
-                # print(list_of_candidate_words, "Candidate words")
+                list_of_candidate_words = binary_search.get_list_same_products_from_array(list_tuple_word_prime,
+                                                                                          product_array,
+                                                                                          top_ref_word,
+                                                                                          bot_ref_word,
+                                                                                          index_of_product_array + chunk_index_start)
+                check_combinations(word_one, list_of_candidate_words, md5_hash, result_shared_mem_ref)
 
-                word_two, word_three = numpy_processing.get_words_from_list_in_arrays(list_tuple_word_prime,
-                                                                                      top_ref_word,
-                                                                                      bot_ref_word,
-                                                                                      index_of_product_array)
 
-                # print(word_one, word_two, word_three)
+def check_combinations(word_one, list_of_candidates, md5_hash, result_shared_mem_ref):
+    for candidates in list_of_candidates:
 
-                # Todo: The algorithm should also look at neightbors with same product!
+        word_two = candidates[0]
+        word_three = candidates[1]
 
-                result = check_three_words(word_one, word_two, word_three, md5_hash)
+        result_one_two_three = check_three_words(word_one, word_two, word_three, md5_hash)
+        result_one_three_two = check_three_words(word_one, word_three, word_two, md5_hash)
+        if result_one_two_three:
+            sentence = word_one + " " + word_two + " " + word_three
+            save_solution(sentence)
+            result_shared_mem_ref.value = sentence
+        elif result_one_three_two:
+            sentence = word_one + " " + word_three + " " + word_two
+            save_solution(sentence)
+            result_shared_mem_ref.value = sentence
 
-                if result:
-                    result_sentence = str(word_one + " " + word_two + " " + word_three)
-                    file_writer.write_solution_into_file(result_sentence,
-                                                         "../solution")
 
-                    result_shared_mem_ref.value = result_sentence
-                    return result_sentence
+def save_solution(sentence):
+    print("--------Found the hash------", sentence)
+    file_writer.write_solution_into_file(sentence, "../solution")
 
 
 # This method slowed down process
@@ -175,7 +180,3 @@ def check_append_words_char_limit(word1, word2, dict_of_char_limit):
             return False
     else:
         return True
-
-
-a = 3109981535661 * 3216705405595
-print(a)

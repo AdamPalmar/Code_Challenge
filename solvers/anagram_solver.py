@@ -145,60 +145,58 @@ class MultipleCpuSolverBinaryNumpySearch(Solver):
 
         self.distribute_work(list_tuple_char_to_prime, anagram_prime_product_sum)
 
+    def distribute_work(self, list_tuple_char_to_prime, anagram_prime_product_sum):
+        # I have a intel i7-2700k processor
+        # It has 4 cores.
+        num_cores = 1
 
-def distribute_work(self, list_tuple_char_to_prime, anagram_prime_product_sum):
-    # I have a intel i7-2700k processor
-    # It has 4 cores.
-    num_cores = 1
+        chunks = int(len(list_tuple_char_to_prime) / num_cores)
 
-    chunks = int(len(list_tuple_char_to_prime) / num_cores)
+        # Todo: it is not possible to shuffle list and only use index
+        # Else i need to copy list and send it aswell
+        # random.shuffle(list_tuple_char_to_prime, random.random)
 
-    # Todo: it is not possible to shuffle list and only use index
-    # Else i need to copy list and send it aswell
-    # random.shuffle(list_tuple_char_to_prime, random.random)
+        chunk_generator = self.chunk_index_gen(list_tuple_char_to_prime, chunks)
 
-    chunk_generator = self.chunk_index_gen(list_tuple_char_to_prime, chunks)
+        self.launch_workers(anagram_prime_product_sum,
+                            list_tuple_char_to_prime,
+                            chunk_generator)
 
-    self.launch_workers(anagram_prime_product_sum,
-                        list_tuple_char_to_prime,
-                        chunk_generator)
+    def chunk_index_gen(self, list_tuple_char_to_prime, num_cores):
+        for i in range(0, len(list_tuple_char_to_prime), num_cores):
+            yield (i, i + num_cores)
 
+    def launch_workers(self, anagram_prime_product_sum,
+                       list_tuple_char_to_prime,
+                       chunk_index_generator):
+        list_of_workers = []
+        manager = multiprocessing.Manager()
+        result_sentence = manager.Value(c_char_p, "No result")
+        for list_chunk_index in chunk_index_generator:
+            process = multiprocessing.Process(target=search_algoritms.search_multi_core_binary_search_numpy,
+                                              args=(anagram_prime_product_sum,
+                                                    list_tuple_char_to_prime,
+                                                    list_chunk_index[0],
+                                                    list_chunk_index[1],
+                                                    result_sentence))
+            list_of_workers.append(process)
 
-def chunk_index_gen(self, list_tuple_char_to_prime, num_cores):
-    for i in range(0, len(list_tuple_char_to_prime), num_cores):
-        yield (i, i + num_cores)
+        for worker in list_of_workers:
+            worker.start()
+            print(worker.pid, "worker id")
 
+        for worker in list_of_workers:
+            # print(worker.pid)
+            worker.join()
 
-def launch_workers(self, anagram_prime_product_sum,
-                   list_tuple_char_to_prime,
-                   chunk_index_generator):
-    list_of_workers = []
-    manager = multiprocessing.Manager()
-    result_sentence = manager.Value(c_char_p, "No result")
-    for list_chunk_index in chunk_index_generator:
-        process = multiprocessing.Process(target=search_algoritms.search_multi_core_binary_search_numpy,
-                                          args=(anagram_prime_product_sum,
-                                                list_tuple_char_to_prime,
-                                                list_chunk_index[0],
-                                                list_chunk_index[1],
-                                                result_sentence))
-        list_of_workers.append(process)
+        print(result_sentence.value, "result sentence")
 
-    for worker in list_of_workers:
-        worker.start()
-        print(worker.pid, "worker id")
-
-    for worker in list_of_workers:
-        # print(worker.pid)
-        worker.join()
-
-    print(result_sentence.value, "result sentence")
-
-    return result_sentence.value
+        return result_sentence.value
 
 
 if __name__ == "__main__":
-    solver = MultipleCpuSolverBinarySearch()
+    # solver = MultipleCpuSolverBinarySearch()
+    solver = MultipleCpuSolverBinaryNumpySearch()
 
     print("Starting")
     t = time.time()
