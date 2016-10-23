@@ -1,4 +1,3 @@
-For 22/10/2016 : Saturday
 
 -----For correctness of program------
 
@@ -10,11 +9,15 @@ If the anagram was not a combination of 3 words the program would not find it cu
 
 -----For optimization of program------
 
-Setup for the program to run in multiple processes.
 Find way to setup computation to use numpy arrays.
+
+Tree structure of the prime products combinations that would
+sum to the wanted product sum.
 
 Find a way to do early stopping making it
 possible to stop looping over not viable combination.
+(Partialy done with binary search)
+
 
 
 -----For testing of the program------

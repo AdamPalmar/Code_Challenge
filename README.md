@@ -18,7 +18,7 @@ The words combined must therefore have this number of characters:
 a : 1
 i : 1
 o : 2
-w : 12
+w : 1
 t : 3
 u : 2
 l : 1
@@ -95,8 +95,10 @@ I speed would improve greatly because the computations can be off loaded to c-co
 22/10/2016 15:30 thoughts:
 The part of the program that need optimizing is the processing section.
 Currently its brute forcing to find solution.
+
 In the search for product sum of the anagram sentence maybe a binary search could be used on the last loop.
-because there wil only be one value multiplied that will give the sum.
+because there wil only be one value multiplied that will give the sum.(This worked well!)
+
 Another idea would be to have a tree structure of the prime products combinations that would
 sum to the wanted product.
 

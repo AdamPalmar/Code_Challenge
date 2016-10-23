@@ -45,7 +45,7 @@ def search_for_combination_binary_search(anagram_product_sum, list_tuple_prime_s
             # Todo: fix the amount of ifs!
 
             if last_prime_value_needed.is_integer():
-                index = binary_search.search(list_tuple_prime_sums, int(last_prime_value_needed))
+                index = binary_search.search_list_tuple(list_tuple_prime_sums, int(last_prime_value_needed))
                 if index != -1:
                     tuple3 = list_tuple_prime_sums[index]
                     product_sum = tuple1[1] * tuple2[1] * tuple3[1]
@@ -76,8 +76,8 @@ def search_multi_core_binary_search(anagram_product_sum,
             # Todo: fix the amount of ifs!
 
             if last_prime_value_needed.is_integer():
-                index = binary_search.search(list_tuple_prime_sums,
-                                             int(last_prime_value_needed))
+                index = binary_search.search_list_tuple(list_tuple_prime_sums,
+                                                        int(last_prime_value_needed))
                 if index != -1:
                     tuple3 = list_tuple_prime_sums[index]
                     product_sum = tuple1[1] * tuple2[1] * tuple3[1]
