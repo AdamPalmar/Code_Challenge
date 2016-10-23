@@ -176,11 +176,11 @@
 <p id="t41" class="stm run hide_run">    <span class="key">return</span> <span class="nam">dict_of_prime_number_mapping</span><span class="strut">&nbsp;</span></p>
 <p id="t42" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t43" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t44" class="stm run hide_run"><span class="key">def</span> <span class="nam">get_sorted_list_tuple_char_to_prime</span><span class="op">(</span><span class="nam">path_to_file</span><span class="op">,</span> <span class="nam">anagram_sentence</span><span class="op">=</span><span class="str">"poultryoutwitsants"</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t44" class="stm run hide_run"><span class="key">def</span> <span class="nam">get_sorted_list_tuple_char_to_prime</span><span class="op">(</span><span class="nam">list_of_words</span><span class="op">,</span> <span class="nam">anagram_sentence</span><span class="op">=</span><span class="str">"poultryoutwitsants"</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t45" class="stm run hide_run">    <span class="nam">anagram_sentence</span> <span class="op">=</span> <span class="nam">utility</span><span class="op">.</span><span class="nam">remove_space_from_sentence</span><span class="op">(</span><span class="nam">anagram_sentence</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t46" class="stm run hide_run">    <span class="nam">dict_prime_char</span> <span class="op">=</span> <span class="nam">dict_prime_numbers_to_anagram_character</span><span class="op">(</span><span class="nam">anagram_sentence</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t47" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t48" class="stm run hide_run">    <span class="nam">dict_word_prime_sums</span> <span class="op">=</span> <span class="nam">dict_words_to_prime_product_sums</span><span class="op">(</span><span class="nam">file_reader</span><span class="op">.</span><span class="nam">read_file_into_list</span><span class="op">(</span><span class="nam">path_to_file</span><span class="op">)</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t48" class="stm run hide_run">    <span class="nam">dict_word_prime_sums</span> <span class="op">=</span> <span class="nam">dict_words_to_prime_product_sums</span><span class="op">(</span><span class="nam">list_of_words</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
 <p id="t49" class="pln">                                                            <span class="nam">dict_prime_char</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t50" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t51" class="stm run hide_run">    <span class="nam">sorted_dict</span> <span class="op">=</span> <span class="nam">utility</span><span class="op">.</span><span class="nam">get_sorted_list_of_tuple_from_dict</span><span class="op">(</span><span class="nam">dict_word_prime_sums</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -206,7 +206,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.2</a>,
-            created at 2016-10-22 22:29
+            created at 2016-10-24 00:58
         </p>
     </div>
 </div>

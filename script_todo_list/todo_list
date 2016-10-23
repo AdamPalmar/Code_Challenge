@@ -9,23 +9,17 @@ If the anagram was not a combination of 3 words the program would not find it cu
 
 -----For optimization of program------
 
-Find way to setup computation to use numpy arrays.
-
-Tree structure of the prime products combinations that would
-sum to the wanted product sum.
-
-Find a way to do early stopping making it
-possible to stop looping over not viable combination.
-(Partialy done with binary search)
-
-
+Make numpy binary search run on multiple cores.
 
 -----For testing of the program------
+
+-High priority-
+Write test for search_algorithms currently only 30% is covered
 
 Test on parts of file_writer, file_reader, wordlist_cleaner missing.
 
 
+-----Clean up program-------
 
-
-
+Go though program, make sure methods makes sense in that place.
 
