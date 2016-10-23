@@ -104,6 +104,8 @@ def search_multi_core_binary_search(anagram_product_sum,
                             return result_sentence
 
 
+
+#Todo: work in progress
 def search_multi_core_binary_search_numpy(anagram_product_sum,
                                           list_tuple_word_prime,
                                           chunk_index_start,
