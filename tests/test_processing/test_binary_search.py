@@ -11,7 +11,7 @@ def test_binary_search_of_array():
     for num in look_for_values:
         index_of_value = binary_search.search_array(numpy_array, num)
         list_of_results.append(index_of_value)
-
+    print("Result ", list_of_results)
     assert list_of_results == expected_index_of_values
 
 
@@ -79,7 +79,7 @@ def test_get_list_of_neighbors_from_array_top_case():
                                        value_to_find=a * e)
 
     neighbors = binary_search.get_list_of_same_neighbors_for_array(list_tuple_word_prime=list_tuple_word_prime,
-                                                                   array_prime_sums=array_prime_sums,
+                                                                   array_of_prime_sums=array_prime_sums,
                                                                    index=index)
     expected_result = ["ae", "ea"]
 
@@ -92,3 +92,5 @@ def test_get_list_of_neighbors_from_array_top_case():
 
 def test_get_list_of_neighbors_from_array_bottom_case():
     pass
+
+    # Todo: add test where all are neighbors

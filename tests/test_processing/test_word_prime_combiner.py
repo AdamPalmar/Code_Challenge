@@ -1,5 +1,5 @@
 from md5_hashing import md5_hasher
-from processing import word_prime_combiner as wp_combiner
+from processing import search_algoritms as wp_combiner
 
 
 def test_check_three_tuples():

@@ -5,12 +5,16 @@ def element_wise_multiply_arrays(array_1, array_2):
     return np.multiply(array_1, array_2)
 
 
-def init_arrays(array_size):
-    top_array = np.zeros(shape=(array_size,), dtype=int)
-    bottom_array = np.zeros(shape=(array_size,), dtype=int)
+def sort_array(numpy_array):
+    return np.sort(numpy_array)
 
-    top_array_ref_to_list_word = np.zeros(shape=(array_size,), dtype=int)
-    bottom_array_ref_to_list_word = np.zeros(shape=(array_size,), dtype=int)
+
+def init_arrays(array_size):
+    top_array = np.zeros(shape=(array_size,), dtype=np.uint64)
+    bottom_array = np.zeros(shape=(array_size,), dtype=np.uint64)
+
+    top_array_ref_to_list_word = np.zeros(shape=(array_size,), dtype=np.uint64)
+    bottom_array_ref_to_list_word = np.zeros(shape=(array_size,), dtype=np.uint64)
 
     return (top_array,
             bottom_array,
@@ -43,6 +47,7 @@ def get_prime_product_of_arrays(num_words, array_of_words):
         # Index into list for the two arrays to find original word
         top_ref_word_list[start_index: stop_index] = index
         bot_ref_word_list[start_index: stop_index] = range(index + 1, num_words)
+
         start_index += num
 
     result_array = element_wise_multiply_arrays(top_array, bottom_array)
@@ -55,7 +60,7 @@ def get_prime_product_of_arrays(num_words, array_of_words):
 def convert_list_tuple_into_numpy_array(list_of_tuple):
     array_size = len(list_of_tuple)
 
-    numpy_array = np.zeros(shape=(array_size,), dtype=int)
+    numpy_array = np.zeros(shape=(array_size,), dtype=np.uint64)
 
     for index, tuple in enumerate(list_of_tuple):
         # The value is in index 1
@@ -64,7 +69,11 @@ def convert_list_tuple_into_numpy_array(list_of_tuple):
     return numpy_array
 
 
-def get_words_from_list_from_arrays(list_of_tuple, top_ref_array, bottom_ref_array, index):
+def get_word_from_list_in_array(list_of_tuple, index, chunck_index_start):
+    return list_of_tuple[index + chunck_index_start][0]
+
+
+def get_words_from_list_in_arrays(list_of_tuple, top_ref_array, bottom_ref_array, index):
     word_1 = list_of_tuple[top_ref_array[index]][0]
     word_2 = list_of_tuple[bottom_ref_array[index]][0]
 

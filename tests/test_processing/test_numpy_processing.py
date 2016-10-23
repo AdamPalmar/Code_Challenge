@@ -13,10 +13,10 @@ def test_get_correct_words_from_list_with_array_ref():
     result, top_ref, bot_ref = numpy_processing.get_prime_product_of_arrays(num_words, test_converted_array)
 
     index_to_look_at = 1
-    word_1, word_2 = numpy_processing.get_words_from_list_from_arrays(list_of_tuple=list_of_tuple,
-                                                                      top_ref_array=top_ref,
-                                                                      bottom_ref_array=bot_ref,
-                                                                      index=index_to_look_at)
+    word_1, word_2 = numpy_processing.get_words_from_list_in_arrays(list_of_tuple=list_of_tuple,
+                                                                    top_ref_array=top_ref,
+                                                                    bottom_ref_array=bot_ref,
+                                                                    index=index_to_look_at)
     # top_array [a a a a b b b c c d]
     # bot_array [b c d e c d e d e e]
 
