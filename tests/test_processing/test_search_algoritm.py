@@ -19,58 +19,20 @@ def test_check_three_tuples():
     assert hashed_result
 
 
-def test_search_for_combination():
-    sentence_to_find = "abc ab ac"
+def test_check_three_tuples_false():
+    tuple1 = ("This", None)
+    tuple2 = ("is", None)
+    tuple3 = ("Sparta!", None)
 
-    md5_hash_sentence = md5_hasher.md5_hash_sentence(sentence_to_find)
+    sentence = "This is not Sparta!"
+    hashed_sentence = md5_hasher.md5_hash_sentence(sentence)
 
-    a, b, c = 2, 3, 5
+    hashed_result = s_a.check_three_tuples(tuple1,
+                                           tuple2,
+                                           tuple3,
+                                           hashed_sentence)
 
-    anagram_product_sum = a * b * c * a * b * a * c
-
-    list_tuple_prime_sums = [("abc", a * b * c),
-                             ("cba", c * b * a),
-                             ("ab", a * b),
-                             ("ac", a * c),
-                             ("ba", b * a),
-                             ("bc", b * c),
-                             ("a", a),
-                             ("b", b),
-                             ("c", c)]
-
-    result_sentence = s_a.search_for_combination(anagram_product_sum,
-                                                 list_tuple_prime_sums,
-                                                 md5_hash_sentence)
-
-    assert result_sentence == sentence_to_find
-
-
-def test_search_for_combination_check_invalid_result():
-    sentence_to_find = "abc ab ac"
-
-    md5_hash_sentence = md5_hasher.md5_hash_sentence(sentence_to_find)
-
-    a, b, c = 2, 3, 5
-
-    anagram_product_sum = a * b * c * a * b * a * c
-
-    list_tuple_prime_sums = [("abc", a * b * c),
-                             ("cba", c * b * a),
-                             ("ab", a * b),
-                             ("ac", a * c),
-                             ("ba", b * a),
-                             ("bc", b * c),
-                             ("a", a),
-                             ("b", b),
-                             ("c", c)]
-
-    result_sentence = s_a.search_for_combination(anagram_product_sum,
-                                                 list_tuple_prime_sums,
-                                                 md5_hash_sentence)
-
-    invalid_sentence = sentence_to_find + "not valid anymore"
-
-    assert result_sentence != invalid_sentence
+    assert not hashed_result
 
 
 def test_search_multi_core_binary_search_numpy():

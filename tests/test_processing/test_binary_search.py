@@ -12,7 +12,7 @@ def test_binary_search_of_array():
     for num in look_for_values:
         index_of_value = search.search_array(numpy_array, num)
         list_of_results.append(index_of_value)
-    print("Result ", list_of_results)
+
     assert list_of_results == expected_index_of_values
 
 
@@ -23,42 +23,6 @@ def test_binary_search_not_in_array():
     list_of_results = list()
     for num in look_for_values:
         index_of_value = search.search_array(numpy_array, num)
-        list_of_results.append(index_of_value)
-
-    assert list_of_results == expected_index_of_values
-
-
-def test_binary_search_of_list_of_tuple():
-    list_of_tuple = [("a", 2),
-                     ("b", 3),
-                     ("c", 5),
-                     ("d", 7),
-                     ("e", 11)]
-
-    expected_index_of_values = [0, 1, 2, 3, 4]
-    look_for_values = [2, 3, 5, 7, 11]
-    list_of_results = list()
-
-    for num in look_for_values:
-        index_of_value = search.search_list_tuple(list_of_tuple, num)
-        list_of_results.append(index_of_value)
-
-    assert list_of_results == expected_index_of_values
-
-
-def test_binary_search_not_in_list_of_tuple():
-    list_of_tuple = [("a", 2),
-                     ("b", 3),
-                     ("c", 5),
-                     ("d", 7),
-                     ("e", 11)]
-
-    expected_index_of_values = [-1, -1, -1, -1, -1]
-    look_for_values = [-1, 0, 1, 4, 100]
-    list_of_results = list()
-
-    for num in look_for_values:
-        index_of_value = search.search_list_tuple(list_of_tuple, num)
         list_of_results.append(index_of_value)
 
     assert list_of_results == expected_index_of_values
@@ -89,12 +53,8 @@ def test_get_list_of_neighbors_from_array_top_case():
     top_ref_array = top_ref_array[permutation]
     bot_ref_array = bot_ref_array[permutation]
 
-    print("array of words", array_of_words)
-    print("array of prime sums", array_prime_sums)
-
     index = search.search_array(array_prime_sums, aba * aab)
 
-    print(top_ref_array[1])
     neighbors_list = search.get_list_same_products_from_array(list_of_tuple,
                                                               array_prime_sums,
                                                               top_ref_array,
@@ -106,7 +66,24 @@ def test_get_list_of_neighbors_from_array_top_case():
     assert expected_result == neighbors_list
 
 
-def test_get_list_of_neighbors_from_array_bottom_case():
-    pass
+def test_list_of_one_word_candidates_neighbors():
+    a, b, c = 2, 3, 5
 
-    # Todo: add test where all are neighbors
+    aba = a * b * a
+    aab = a * a * b
+    baa = b * a * a
+    abc = a * b * c
+
+    anagram_prime_product = aba
+
+    list_of_tuple = [("aba", aba),
+                     ("aab", aab),
+                     ("baa", baa),
+                     ("abc", abc)]
+
+    result_list = search.get_list_of_one_word_candidates(list_of_tuple,
+                                                         anagram_prime_product,
+                                                         1)
+    expected_list = ["aab", "baa", "aba"]
+
+    assert result_list == expected_list

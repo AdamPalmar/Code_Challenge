@@ -1,5 +1,4 @@
-from fileIO import file_reader
-from prime_number_generator import prime_generator
+from prime_number_generator import prime_numbers
 from utilities import utility
 
 
@@ -27,14 +26,11 @@ def dict_prime_numbers_to_anagram_character(anagram_sentence):
     set_of_characters_in_anagram = set(utility.remove_space_from_sentence(anagram_sentence))
 
     # Converting to list to avoid random enumeration of set.
-
     list_of_character_in_anagram = list(set_of_characters_in_anagram)
     list_of_character_in_anagram = sorted(list_of_character_in_anagram)
 
-    list_of_prime_numbers = prime_generator.get_list_of_prime_numbers()
+    list_of_prime_numbers = prime_numbers.get_list_of_prime_numbers()
 
-    # Todo: For optimization round. change such that most frequent characters get low primenumbers
-    # Currently the anagram_characters are picked randomly
     for index, character in list(enumerate(list_of_character_in_anagram)):
         dict_of_prime_number_mapping[character] = list_of_prime_numbers[index]
 
@@ -56,5 +52,3 @@ def get_sorted_list_tuple_char_to_prime(list_of_words, anagram_sentence="poultry
 def get_product_sum_anagram_sentence(anagram_sentence="poultryoutwitsants"):
     dict_prime_char = dict_prime_numbers_to_anagram_character(anagram_sentence)
     return prime_product_sum_of_anagram_sentence(anagram_sentence, dict_prime_char)
-
-

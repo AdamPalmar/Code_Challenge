@@ -1,4 +1,4 @@
-from fileIO import file_reader, file_writer
+from fileIO import file_reader
 from utilities import utility
 
 

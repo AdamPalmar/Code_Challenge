@@ -1,13 +1,8 @@
 import numpy as np
-from profiler import line_profiling
 
 
 def element_wise_multiply_arrays(array_1, array_2):
     return np.multiply(array_1, array_2)
-
-
-def sort_array(numpy_array):
-    return np.sort(numpy_array)
 
 
 def init_arrays(array_size):
@@ -23,7 +18,6 @@ def init_arrays(array_size):
             bottom_array_ref_to_list_word)
 
 
-# @line_profiling.profile(follow=[])
 def get_prime_product_of_arrays(num_words, array_of_words):
     """
     This array will be used to do binary search in
@@ -60,7 +54,6 @@ def get_prime_product_of_arrays(num_words, array_of_words):
     return sort_product_array_with_top_bot(result_array, top_ref_word_array, bot_ref_word_array)
 
 
-# @line_profiling.profile(follow=[])
 def sort_product_array_with_top_bot(result_array, top_ref_word_list, bot_ref_word_list):
     permutation = result_array.argsort()
     result_array = result_array[permutation]
@@ -75,7 +68,7 @@ def convert_list_tuple_into_numpy_array(list_of_tuple):
     numpy_array = np.zeros(shape=(array_size,), dtype=np.uint64)
 
     for index, tuple in enumerate(list_of_tuple):
-        # The value is in index 1
+        # The value of the tuple is in index 1
         numpy_array[index] = tuple[1]
 
     return numpy_array
