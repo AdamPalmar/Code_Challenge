@@ -1,5 +1,4 @@
 import numpy as np
-from profiler import line_profiling
 
 
 def element_wise_multiply_arrays(array_1, array_2):
@@ -23,7 +22,6 @@ def init_arrays(array_size):
             bottom_array_ref_to_list_word)
 
 
-# @line_profiling.profile(follow=[])
 def get_prime_product_of_arrays(num_words, array_of_words):
     """
     This array will be used to do binary search in
@@ -60,7 +58,6 @@ def get_prime_product_of_arrays(num_words, array_of_words):
     return sort_product_array_with_top_bot(result_array, top_ref_word_array, bot_ref_word_array)
 
 
-# @line_profiling.profile(follow=[])
 def sort_product_array_with_top_bot(result_array, top_ref_word_list, bot_ref_word_list):
     permutation = result_array.argsort()
     result_array = result_array[permutation]

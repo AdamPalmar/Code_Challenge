@@ -1,10 +1,6 @@
 from hasher import md5_hasher
 from fileIO import file_writer
 from processing import binary_search, numpy_processing
-from preproccessing import wordlist_cleaner as wlc
-from profiler import line_profiling
-import numpy as np
-import time
 import itertools
 
 
