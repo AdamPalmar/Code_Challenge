@@ -41,7 +41,7 @@ The tests of the program can be run using pytest, when standing in the /tests fo
 The running the command below in a terminal.
 
 py.test --cov=test_word_prime_converter.py --cov=preproccessing --cov=fileIO --cov=md5_hashing
---cov=processing --cov=solvers --cov=prime_number_generator --cov=utilities --cov-report=term --pep8 --flakes --mccabe
+--cov=processing --cov=solver --cov=prime_number_generator --cov=utilities --cov-report=term --pep8 --flakes --mccabe
 
 It is a bit clunky.
 
