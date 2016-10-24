@@ -2,8 +2,8 @@
 ## The problem
 I see the problem as two folded.
 
-- Find words that is an anagram of "poultry outwits ants"
-- The specific anagram must hash to 4624d200580677270a54ccff86b9610e
+- Find words that is an anagram of sentence
+- The specific anagram must hash to a specific hash 
 
 ## Anagram definition
 https://en.wikipedia.org/wiki/Anagram.
