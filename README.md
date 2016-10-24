@@ -2,7 +2,7 @@
 ## The problem
 I see the problem as two folded.
 
-- Find words that is an anagram of sentence
+- Find words that is an anagram of the sentence
 - The specific anagram must hash to a specific hash 
 
 ## Anagram definition
