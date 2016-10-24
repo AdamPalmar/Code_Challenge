@@ -1,0 +1,8 @@
+{
+  "test_anagram_solver.py::test_base_solver_class": true,
+  "test_anagram_solver.py::test_did_not_find_anagram_sentence": true,
+  "test_anagram_solver.py::test_main": true,
+  "test_anagram_solver.py::test_multiple_cpu_solver_binary_numpy_search_one_word": true,
+  "test_anagram_solver.py::test_multiple_cpu_solver_binary_numpy_search_three_words": true,
+  "test_anagram_solver.py::test_multiple_cpu_solver_binary_numpy_search_two_words": true
+}
