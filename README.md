@@ -1,24 +1,24 @@
-# Anagram Solver
-# The problem
+## Anagram Solver
+## The problem
 I see the problem as two folded.
 
 - Find words that is an anagram of "poultry outwits ants"
 - The specific anagram must hash to 4624d200580677270a54ccff86b9610e
 
-#Anagram definition
+## Anagram definition
 https://en.wikipedia.org/wiki/Anagram.
 An anagram is made by rearranging the letters of a word or sentence such that a new word or phrase is created.
 
 
-#Program
+##Program
 The current program can find anagram sentences of combinations of 3 words or less from a word list.
 
 I have focused on optimizing the search for anagram sentences hashes for 1, 2 or 3 words.
 Also to make tests that cover the program code.
 
-- Steps in program
 
-#Preprocessing
+## Steps in program
+###Preprocessing
 
 At first the program does preprocessing on the wordlist removing not viable words.
 This is done by removing words with characters that cannot be found in the anagram sentence.
@@ -26,7 +26,7 @@ This is done by removing words with characters that cannot be found in the anagr
 Afterwards the individual characters in the words are mapped to prime numbers.
 
 
-#Processing
+###Processing
 
 The processing is then distributed to 4 processes.
 
@@ -35,7 +35,7 @@ Afterward a binary search is used to find values in the array that match prime p
 
 Lastly the possible word combinations are hashed and checked with given hash.
 
-#Testing
+###Testing
 
 The tests of the program can be run using pytest, when standing in the /tests folder.
 The running the command below in a terminal.
@@ -51,7 +51,7 @@ The html files can be opened in a browser.
 
 There are still corner cases that are not tested yet though.
 
-#Final remarks
+###Final remarks
 
 The correct anagram sentence hash is found in about 0.34 sec on a i7-2700K.
 
