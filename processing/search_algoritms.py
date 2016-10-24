@@ -1,10 +1,11 @@
-from md5_hashing import md5_hasher
+from hasher import md5_hasher
 from fileIO import file_writer
 from processing import binary_search, numpy_processing
 from preproccessing import wordlist_cleaner as wlc
 from profiler import line_profiling
 import numpy as np
 import time
+import itertools
 
 
 def check_three_tuples(tuple1, tuple2, tuple3, md5_hash="4624d200580677270a54ccff86b9610e"):
@@ -26,9 +27,20 @@ def check_three_words(word_one, word_two, word_three, md5_hash="4624d20058067727
         return False
 
 
-# Todo: Make search run more then three loops
-# Todo: Add early stop in for loops
-# Todo: Is it a list of tuples though?
+def check_hash_for_list_combinations(list_of_word_pairs, md5_hash):
+    for word_pair in list_of_word_pairs:
+        combinations = itertools.permutations(word_pair)
+        for combination in combinations:
+            sentence = combination[0] + " " + combination[1]
+            word_hash = md5_hasher.md5_hash_sentence(sentence)
+
+            if word_hash == md5_hash:
+                return True, sentence
+
+    else:
+        return False, None
+
+
 def search_for_combination(anagram_product_sum, list_tuple_word_prime, md5_hash="4624d200580677270a54ccff86b9610e"):
     # print(anagram_product_sum)
     for tuple1 in list_tuple_word_prime:
@@ -121,6 +133,13 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
      top_ref_word,
      bot_ref_word) = numpy_processing.get_prime_product_of_arrays(num_words, array_of_word_values)
 
+    found_correct, sentence = check_for_combinations_of_two(anagram_product_sum, product_array, list_tuple_word_prime,
+                                                            top_ref_word, bot_ref_word, md5_hash)
+
+    if found_correct:
+        result_shared_mem_ref.value = sentence
+        return
+
     for index, product_sum in enumerate(array_of_word_values[chunk_index_start: chunk_index_stop]):
 
         prime_product_needed = anagram_product_sum / product_sum
@@ -138,14 +157,34 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
                                                                                           bot_ref_word,
                                                                                           index_of_product_array)
 
-                check_combinations(word_one, list_of_candidate_words, md5_hash, result_shared_mem_ref)
+                check_hash_for_three_words(word_one, list_of_candidate_words, md5_hash, result_shared_mem_ref)
 
 
-def search_all_combinations():
-    pass
+def check_for_combinations_of_two(anagram_product_sum,
+                                  product_array,
+                                  list_tuple_word_prime,
+                                  top_ref_word,
+                                  bot_ref_word,
+                                  md5_hash):
+    index_of_product_array = binary_search.search_array(product_array, int(anagram_product_sum))
+
+    if index_of_product_array != -1:
+
+        list_of_candidate_words = binary_search.get_list_same_products_from_array(list_tuple_word_prime,
+                                                                                  product_array,
+                                                                                  top_ref_word,
+                                                                                  bot_ref_word,
+                                                                                  index_of_product_array)
+
+        is_correct_hash, sentence = check_hash_for_list_combinations(list_of_candidate_words, md5_hash)
+
+        if is_correct_hash:
+            return True, sentence
+    else:
+        return False, None
 
 
-def check_combinations(word_one, list_of_candidates, md5_hash, result_shared_mem_ref):
+def check_hash_for_three_words(word_one, list_of_candidates, md5_hash, result_shared_mem_ref):
     for candidates in list_of_candidates:
 
         word_two = candidates[0]

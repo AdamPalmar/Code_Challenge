@@ -3,6 +3,7 @@ from preproccessing import wordlist_cleaner
 from processing import search_algoritms
 from utilities import utility
 from ctypes import c_char_p
+from hasher import md5_hasher
 import multiprocessing
 
 import time
@@ -145,7 +146,7 @@ class MultipleCpuSolverBinaryNumpySearch(Solver):
     def distribute_work(self, list_tuple_char_to_prime, anagram_prime_product_sum, md5_hash):
         # I have a intel i7-2700k processor
         # It has 4 cores.
-        num_cores = 1
+        num_cores = 4
 
         chunks = int(len(list_tuple_char_to_prime) / num_cores)
 
@@ -183,7 +184,7 @@ class MultipleCpuSolverBinaryNumpySearch(Solver):
         for worker in list_of_workers:
             worker.join()
 
-        print(result_sentence.value, "result sentence")
+        print(result_sentence.value, "Original sentence returned")
 
         return result_sentence.value
 
@@ -195,12 +196,11 @@ def main():
 
     print("Starting")
     t = time.time()
-    solver.solve_anagram("poultry outwits ants", "../wordlist")
+    # solver.solve_anagram("poultry outwits ants", "../wordlist")
 
     # Test
-    # solver.solve_anagram("pastils turnout towy", "../wordlist", md5_hash="8b35bbd7ff2f5dd7c94fffbb1a3512bc")
-    # md5_hash = md5_hasher.md5_hash_sentence("yugoslavia's yule yumier")
-    # solver.solve_anagram("yule yumier yugoslavia's", "../wordlist", md5_hash)
+    md5_hash = md5_hasher.md5_hash_sentence("zen above actor")
+    solver.solve_anagram("actor above zen", "../wordlist", md5_hash)
 
     print(time.time() - t, "time")
     print("Done")

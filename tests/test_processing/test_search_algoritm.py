@@ -1,4 +1,4 @@
-from md5_hashing import md5_hasher
+from hasher import md5_hasher
 from processing import search_algoritms as s_a
 from solvers import anagram_solver
 
