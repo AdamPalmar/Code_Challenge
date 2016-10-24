@@ -145,7 +145,7 @@ class MultipleCpuSolverBinaryNumpySearch(Solver):
     def distribute_work(self, list_tuple_char_to_prime, anagram_prime_product_sum, md5_hash):
         # I have a intel i7-2700k processor
         # It has 4 cores.
-        num_cores = 4
+        num_cores = 1
 
         chunks = int(len(list_tuple_char_to_prime) / num_cores)
 

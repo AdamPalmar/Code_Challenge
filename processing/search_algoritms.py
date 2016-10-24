@@ -2,7 +2,8 @@ from md5_hashing import md5_hasher
 from fileIO import file_writer
 from processing import binary_search, numpy_processing
 from preproccessing import wordlist_cleaner as wlc
-
+from profiler import line_profiling
+import numpy as np
 import time
 
 
@@ -105,6 +106,7 @@ def search_multi_core_binary_search(anagram_product_sum,
                             return result_sentence
 
 
+# @line_profiling.profile(follow=[])
 def search_multi_core_binary_search_numpy(anagram_product_sum,
                                           list_tuple_word_prime,
                                           chunk_index_start,
@@ -119,14 +121,7 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
      top_ref_word,
      bot_ref_word) = numpy_processing.get_prime_product_of_arrays(num_words, array_of_word_values)
 
-    permutation = product_array.argsort()
-    product_array = product_array[permutation]
-    top_ref_word = top_ref_word[permutation]
-    bot_ref_word = bot_ref_word[permutation]
-
     for index, product_sum in enumerate(array_of_word_values[chunk_index_start: chunk_index_stop]):
-
-        # anagram_product_sum = 547236300691459849470
 
         prime_product_needed = anagram_product_sum / product_sum
 
@@ -144,6 +139,10 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
                                                                                           index_of_product_array)
 
                 check_combinations(word_one, list_of_candidate_words, md5_hash, result_shared_mem_ref)
+
+
+def search_all_combinations():
+    pass
 
 
 def check_combinations(word_one, list_of_candidates, md5_hash, result_shared_mem_ref):
@@ -167,16 +166,3 @@ def check_combinations(word_one, list_of_candidates, md5_hash, result_shared_mem
 def save_solution(sentence):
     print("--------Found the hash------", sentence)
     file_writer.write_solution_into_file(sentence, "../solution")
-
-
-# This method slowed down process
-def check_append_words_char_limit(word1, word2, dict_of_char_limit):
-    combined_words = word1 + word2
-    dict_combined_word = dict()
-    for char in combined_words:
-        dict_combined_word[char] = wlc.value_to_increment_to_in_dict(dict_combined_word,
-                                                                     char)
-        if dict_combined_word[char] > dict_of_char_limit[char]:
-            return False
-    else:
-        return True
