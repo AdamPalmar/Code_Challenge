@@ -1,4 +1,4 @@
-from prime_number_generator import prime_number_list
+from prime_number_generator import prime_numbers
 from utilities import utility
 
 
@@ -29,7 +29,7 @@ def dict_prime_numbers_to_anagram_character(anagram_sentence):
     list_of_character_in_anagram = list(set_of_characters_in_anagram)
     list_of_character_in_anagram = sorted(list_of_character_in_anagram)
 
-    list_of_prime_numbers = prime_number_list.get_list_of_prime_numbers()
+    list_of_prime_numbers = prime_numbers.get_list_of_prime_numbers()
 
     for index, character in list(enumerate(list_of_character_in_anagram)):
         dict_of_prime_number_mapping[character] = list_of_prime_numbers[index]

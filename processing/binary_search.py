@@ -1,28 +1,6 @@
 from processing import numpy_processing
 
 
-def search_list_tuple(list_tuple_prime_sums, value_to_find):
-    # list_tuple_word_prime[0] == word
-    # list_tuple_word_prime[1] == prime_product_sum
-    top = len(list_tuple_prime_sums) - 1
-    bottom = 0
-
-    while bottom <= top:
-        mid = int(top + bottom / 2)
-
-        # Key value in index 1
-        if list_tuple_prime_sums[mid][1] == value_to_find:
-            return mid
-        elif list_tuple_prime_sums[mid][1] < value_to_find:
-            bottom = mid + 1
-        else:
-            top = mid - 1
-
-    # Todo: Maybe change -1 return
-    # Return -1 if value not found
-    return -1
-
-
 def search_array(array_prime_sums, value_to_find):
     top = len(array_prime_sums) - 1
     bottom = 0
@@ -39,8 +17,6 @@ def search_array(array_prime_sums, value_to_find):
         else:
             top = mid - 1
 
-    # Todo: Maybe change -1 return
-    # Return -1 if value not found
     return -1
 
 
@@ -101,7 +77,7 @@ def get_list_of_one_word_candidates(list_tuple_word_prime, anagram_product_sum, 
     bot_index = index - 1
 
     while top_index < length_of_array:
-        if list_tuple_word_prime[top_index] == value_to_look_for:
+        if list_tuple_word_prime[top_index][1] == value_to_look_for:
             candidate = list_tuple_word_prime[top_index][0]
             list_of_candidates.append(candidate)
             top_index += 1
@@ -109,7 +85,7 @@ def get_list_of_one_word_candidates(list_tuple_word_prime, anagram_product_sum, 
             break
 
     while bot_index >= 0:
-        if list_tuple_word_prime[bot_index] == value_to_look_for:
+        if list_tuple_word_prime[bot_index][1] == value_to_look_for:
             candidate = list_tuple_word_prime[bot_index][0]
             list_of_candidates.append(candidate)
             bot_index -= 1

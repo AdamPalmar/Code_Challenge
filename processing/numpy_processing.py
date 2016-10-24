@@ -5,10 +5,6 @@ def element_wise_multiply_arrays(array_1, array_2):
     return np.multiply(array_1, array_2)
 
 
-def sort_array(numpy_array):
-    return np.sort(numpy_array)
-
-
 def init_arrays(array_size):
     top_array = np.zeros(shape=(array_size,), dtype=np.uint64)
     bottom_array = np.zeros(shape=(array_size,), dtype=np.uint64)
@@ -72,7 +68,7 @@ def convert_list_tuple_into_numpy_array(list_of_tuple):
     numpy_array = np.zeros(shape=(array_size,), dtype=np.uint64)
 
     for index, tuple in enumerate(list_of_tuple):
-        # The value is in index 1
+        # The value of the tuple is in index 1
         numpy_array[index] = tuple[1]
 
     return numpy_array
