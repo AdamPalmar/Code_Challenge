@@ -1,6 +1,6 @@
 from hasher import md5_hasher
 from processing import search_algoritms as s_a
-from solvers import anagram_solver
+from solver import anagram_solver
 
 
 def test_check_three_tuples():

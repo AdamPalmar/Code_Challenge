@@ -10,106 +10,50 @@ https://en.wikipedia.org/wiki/Anagram.
 An anagram is made by rearranging the letters of a word or sentence such that a new word or phrase is created.
 
 
+#Program
+The current program can find anagram sentences of combinations of 3 words or less from a word list.
 
-My initial thoughts.
-Finding what words or word can create an anagram can be seen as a seperate problem.
-If two sentences share exactly the same character they can make be a anagram.
-The words combined must therefore have this number of characters:
-a : 1
-i : 1
-o : 2
-w : 1
-t : 3
-u : 2
-l : 1
-s : 2
-n : 1
-y : 1
-p : 1
-r : 1
+I have focused on optimizing the search for anagram sentences hashes for 1, 2 or 3 words.
+Also to make tests that cover the program code.
 
-Doing bruteforce on the problem would worst case be 18! which is 6.4023737e+15.
+- Steps in program
+
+#Preprocessing
+
+At first the program does preprocessing on the wordlist removing not viable words.
+This is done by removing words with characters that cannot be found in the anagram sentence.
+
+Afterwards the individual characters in the words are mapped to prime numbers.
 
 
-If the words are converted into an integer form i could leverage the numpy lib when finding potential
-that could make anagrams.
+#Processing
 
-Pros:
+The processing is then distributed to 4 processes.
 
-- Numpy does linear algebra computations very fast.
-- With the integer convertion the order might not matter
-  if added or multiplied together.
-- It can be done in parallel on multiple cores of even GPU.
+The processing loop consists of elementwise array multiplcation of the combinations of word prime number representation.
+Afterward a binary search is used to find values in the array that match prime product sum of the anagram sentence given.
 
-Cons:
+Lastly the possible word combinations are hashed and checked with given hash.
 
-- Preproccesing is needed, the amount of unique characters needs to be know.
-- Adding more characters would require a new map to integers.
+#Testing
 
+The tests of the program can be run using pytest, when standing in the /tests folder.
+The running the command below in a terminal.
 
+py.test --cov=test_word_prime_converter.py --cov=preproccessing --cov=fileIO --cov=md5_hashing
+--cov=processing --cov=solvers --cov=prime_number_generator --cov=utilities --cov-report=term --pep8 --flakes --mccabe
 
-21/10/2016 19:00 thoughts:
+It is a bit clunky.
 
-Im unsure of what would be faster for eliminating invalid words.
-The amount of words in the clean list is now 1787 after some preprocessing.
+The tests cover 99% of the program.
+The test coverage reports generated with pytest can be found in the /tests/htmlcov folder.
+The html files can be opened in a browser.
 
-Trying to append the remaining words together combinatorially and checking the dictionary
-of the anagram sentence if there are one too many of one character could be done.
+There are still corner cases that are not tested yet though.
 
-Pros:
+#Final remarks
 
-- It can avoid search on combinations has to many of one character.
+The correct anagram sentence hash is found in about 0.34 sec on a i7-2700K.
 
-Cons:
-
-- It is alot of read and writes to dictionaries.
-
-
-Another approach would be to multiply the prime products sums together and compare with
-prime product sum of anagram sentence. This approach does not use the fact that a character
-cant be repeated more times then in the anagram sentence.
-
-Pros:
-
-- The check for words combined that are larger is can be done fast
-because if the product of the two words are larger then the anagram sentence sum
-the combination is invalid.
-
-Cons:
-
-- Refined bruteforce.
-
-Note:
-The dublicates are being removed with the dictionary. Mabye this is a problem.
-
-
-21/10/2016 22:30 thoughts:
-
-It has become clear that im doing 6 times the amount of hashes for matching.
-that is necessary, Ups.
-
-Still thinking of a way to do computation with vector or matrix multiplications.
-I speed would improve greatly because the computations can be off loaded to c-code with numpy.
-
-#Ideas for optimization
-22/10/2016 15:30 thoughts:
-The part of the program that need optimizing is the processing section.
-Currently its brute forcing to find solution.
-
-In the search for product sum of the anagram sentence maybe a binary search could be used on the last loop.
-because there wil only be one value multiplied that will give the sum.(This worked well!)
-
-Another idea would be to have a tree structure of the prime products combinations that would
-sum to the wanted product.
-
-
-
-
-
-
-
-
-
-
-
-
+The below are the run speed of the process throughout optimization.
+660 sec -> 5.7 sec -> 2.3 sec -> 0.5 sec -> 0.34 sec

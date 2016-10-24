@@ -21,21 +21,6 @@ def remove_words_with_invalid_char(list_of_words, anagram_sentence):
     return list_of_clean_words
 
 
-def dict_of_char_in_anagram_sentence(anagram_sentence):
-    dictionary_of_chars = dict()
-    for char in utility.remove_space_from_sentence(anagram_sentence):
-        dictionary_of_chars[char] = value_to_increment_to_in_dict(dictionary_of_chars, char)
-
-    return dictionary_of_chars
-
-
-def value_to_increment_to_in_dict(dictionary, char):
-    if char not in dictionary:
-        return 1
-    else:
-        return dictionary[char] + 1
-
-
 def remove_words_with_too_many_of_one_char(list_of_words, anagram_sentence):
     list_of_clean_words = []
     d = dict_of_char_in_anagram_sentence(utility.remove_space_from_sentence(anagram_sentence))
@@ -51,6 +36,21 @@ def remove_words_with_too_many_of_one_char(list_of_words, anagram_sentence):
             continue
 
     return list_of_clean_words
+
+
+def dict_of_char_in_anagram_sentence(anagram_sentence):
+    dictionary_of_chars = dict()
+    for char in utility.remove_space_from_sentence(anagram_sentence):
+        dictionary_of_chars[char] = value_to_increment_to_in_dict(dictionary_of_chars, char)
+
+    return dictionary_of_chars
+
+
+def value_to_increment_to_in_dict(dictionary, char):
+    if char not in dictionary:
+        return 1
+    else:
+        return dictionary[char] + 1
 
 
 def get_clean_wordlist(anagram_sentence, path_to_wordlist):
