@@ -27,7 +27,7 @@ def check_three_words(word_one, word_two, word_three, md5_hash="4624d20058067727
         return False
 
 
-def check_hash_for_list_combinations(list_of_word_pairs, md5_hash):
+def check_hash_for_list_pair_combinations(list_of_word_pairs, md5_hash):
     for word_pair in list_of_word_pairs:
         combinations = itertools.permutations(word_pair)
         for combination in combinations:
@@ -37,6 +37,16 @@ def check_hash_for_list_combinations(list_of_word_pairs, md5_hash):
             if word_hash == md5_hash:
                 return True, sentence
 
+    else:
+        return False, None
+
+
+def check_hash_one_word_list(list_of_word, md5_hash):
+    for word in list_of_word:
+        word_hash = md5_hasher.md5_hash_sentence(word)
+
+        if word_hash == md5_hash:
+            return True, word
     else:
         return False, None
 
@@ -127,6 +137,15 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
                                           md5_hash="4624d200580677270a54ccff86b9610e"):
     array_of_word_values = numpy_processing.convert_list_tuple_into_numpy_array(list_tuple_word_prime)
 
+    found_correct, sentence = check_for_one_word(anagram_product_sum,
+                                                 array_of_word_values,
+                                                 list_tuple_word_prime,
+                                                 md5_hash)
+
+    if found_correct:
+        result_shared_mem_ref.value = sentence
+        return
+
     num_words = len(array_of_word_values)
 
     (product_array,
@@ -148,6 +167,7 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
 
             index_of_product_array = binary_search.search_array(product_array, int(prime_product_needed))
 
+            # This means a anagram was found
             if index_of_product_array != -1:
                 word_one = numpy_processing.get_word_from_list_in_array(list_tuple_word_prime, index, chunk_index_start)
 
@@ -158,6 +178,25 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
                                                                                           index_of_product_array)
 
                 check_hash_for_three_words(word_one, list_of_candidate_words, md5_hash, result_shared_mem_ref)
+
+
+def check_for_one_word(anagram_product_sum,
+                       array_of_word_values,
+                       list_tuple_word_prime,
+                       md5_hash):
+    index = binary_search.search_array(array_prime_sums=array_of_word_values,
+                                       value_to_find=anagram_product_sum)
+
+    if index != -1:
+        list_of_candidate_words = binary_search.get_list_of_one_word_candidates(list_tuple_word_prime,
+                                                                                anagram_product_sum,
+                                                                                index)
+        is_correct_hash, sentence = check_hash_one_word_list(list_of_candidate_words, md5_hash)
+
+        if is_correct_hash:
+            return True, sentence
+
+    return False, None
 
 
 def check_for_combinations_of_two(anagram_product_sum,
@@ -176,12 +215,16 @@ def check_for_combinations_of_two(anagram_product_sum,
                                                                                   bot_ref_word,
                                                                                   index_of_product_array)
 
-        is_correct_hash, sentence = check_hash_for_list_combinations(list_of_candidate_words, md5_hash)
+        is_correct_hash, sentence = check_hash_for_list_pair_combinations(list_of_candidate_words, md5_hash)
 
         if is_correct_hash:
             return True, sentence
-    else:
-        return False, None
+
+    return False, None
+
+
+def bruteforce_above_3_word():
+    pass
 
 
 def check_hash_for_three_words(word_one, list_of_candidates, md5_hash, result_shared_mem_ref):

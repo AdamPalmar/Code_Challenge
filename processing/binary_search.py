@@ -87,3 +87,33 @@ def get_list_same_products_from_array(list_tuple_word_prime, array_of_prime_sums
             break
 
     return list_of_same_neighbors
+
+
+def get_list_of_one_word_candidates(list_tuple_word_prime, anagram_product_sum, index):
+    value_to_look_for = anagram_product_sum
+    length_of_array = len(list_tuple_word_prime)
+    list_of_candidates = list()
+
+    word_one = list_tuple_word_prime[index][0]
+    list_of_candidates.append(word_one)
+
+    top_index = index + 1
+    bot_index = index - 1
+
+    while top_index < length_of_array:
+        if list_tuple_word_prime[top_index] == value_to_look_for:
+            candidate = list_tuple_word_prime[top_index][0]
+            list_of_candidates.append(candidate)
+            top_index += 1
+        else:
+            break
+
+    while bot_index >= 0:
+        if list_tuple_word_prime[bot_index] == value_to_look_for:
+            candidate = list_tuple_word_prime[bot_index][0]
+            list_of_candidates.append(candidate)
+            bot_index -= 1
+        else:
+            break
+
+    return list_of_candidates

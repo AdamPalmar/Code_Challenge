@@ -184,8 +184,6 @@ class MultipleCpuSolverBinaryNumpySearch(Solver):
         for worker in list_of_workers:
             worker.join()
 
-        print(result_sentence.value, "Original sentence returned")
-
         return result_sentence.value
 
 
@@ -199,9 +197,10 @@ def main():
     # solver.solve_anagram("poultry outwits ants", "../wordlist")
 
     # Test
-    md5_hash = md5_hasher.md5_hash_sentence("zen above actor")
-    solver.solve_anagram("actor above zen", "../wordlist", md5_hash)
+    md5_hash = md5_hasher.md5_hash_sentence("zen")
+    result = solver.solve_anagram("nez", "../wordlist", md5_hash)
 
+    print(result, "Original sentence returned")
     print(time.time() - t, "time")
     print("Done")
 
