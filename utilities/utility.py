@@ -1,4 +1,3 @@
-import os
 def remove_space_from_sentence(sentence):
     return sentence.replace(" ", "")
 
@@ -17,4 +16,6 @@ def remove_empty_space_in_list(list_of_words):
     return list_of_words
 
 
-
+def chunk_index_gen(list_tuple_char_to_prime, num_cores):
+    for i in range(0, len(list_tuple_char_to_prime), num_cores):
+        yield (i, i + num_cores)

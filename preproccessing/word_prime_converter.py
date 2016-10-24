@@ -57,7 +57,4 @@ def get_product_sum_anagram_sentence(anagram_sentence="poultryoutwitsants"):
     dict_prime_char = dict_prime_numbers_to_anagram_character(anagram_sentence)
     return prime_product_sum_of_anagram_sentence(anagram_sentence, dict_prime_char)
 
-# d = dict_prime_numbers_to_anagram_character("abcc")
-# print(d)
-# product = prime_product_sum_of_anagram_sentence("abcc", d)
-# print(product)
+

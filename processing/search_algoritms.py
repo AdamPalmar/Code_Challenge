@@ -3,8 +3,6 @@ from fileIO import file_writer
 from processing import binary_search, numpy_processing
 from preproccessing import wordlist_cleaner as wlc
 
-from profiler import line_profiling
-
 import time
 
 
@@ -80,6 +78,7 @@ def search_multi_core_binary_search(anagram_product_sum,
                                     result_shared_mem_ref,
                                     md5_hash="4624d200580677270a54ccff86b9610e"):
     for tuple1 in list_tuple_word_prime[chunk_index_start: chunk_index_stop]:
+
         for tuple2 in list_tuple_word_prime:
 
             last_prime_value_needed = anagram_product_sum / (tuple1[1] * tuple2[1])
@@ -94,6 +93,7 @@ def search_multi_core_binary_search(anagram_product_sum,
 
                     if product_sum == anagram_product_sum:
                         # print(tuple1, tuple2, tuple3)
+
                         result = check_three_tuples(tuple1, tuple2, tuple3, md5_hash)
 
                         if result:
@@ -105,8 +105,6 @@ def search_multi_core_binary_search(anagram_product_sum,
                             return result_sentence
 
 
-# Todo: remember to remove
-@line_profiling.profile(follow=[])
 def search_multi_core_binary_search_numpy(anagram_product_sum,
                                           list_tuple_word_prime,
                                           chunk_index_start,
@@ -122,11 +120,9 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
      bot_ref_word) = numpy_processing.get_prime_product_of_arrays(num_words, array_of_word_values)
 
     permutation = product_array.argsort()
-
     product_array = product_array[permutation]
     top_ref_word = top_ref_word[permutation]
     bot_ref_word = bot_ref_word[permutation]
-    counter = 0
 
     for index, product_sum in enumerate(array_of_word_values[chunk_index_start: chunk_index_stop]):
 
@@ -145,7 +141,8 @@ def search_multi_core_binary_search_numpy(anagram_product_sum,
                                                                                           product_array,
                                                                                           top_ref_word,
                                                                                           bot_ref_word,
-                                                                                          index_of_product_array + chunk_index_start)
+                                                                                          index_of_product_array)
+
                 check_combinations(word_one, list_of_candidate_words, md5_hash, result_shared_mem_ref)
 
 

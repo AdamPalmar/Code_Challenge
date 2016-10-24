@@ -1,6 +1,6 @@
 from fileIO import file_reader, file_writer
 from utilities import utility
-from profiler import line_profiling
+
 
 
 def remove_words_with_invalid_char(list_of_words, anagram_sentence):
@@ -55,7 +55,7 @@ def remove_words_with_too_many_of_one_char(list_of_words, anagram_sentence):
 
 
 # Todo: remember to remove
-@line_profiling.profile(follow=[remove_words_with_invalid_char, remove_words_with_too_many_of_one_char])
+# @line_profiling.profile(follow=[remove_words_with_invalid_char, remove_words_with_too_many_of_one_char])
 def get_clean_wordlist(anagram_sentence, path_to_wordlist):
     l_1 = remove_words_with_invalid_char(file_reader.read_file_into_list(path_to_wordlist), anagram_sentence)
     l_2 = remove_words_with_too_many_of_one_char(l_1, anagram_sentence)

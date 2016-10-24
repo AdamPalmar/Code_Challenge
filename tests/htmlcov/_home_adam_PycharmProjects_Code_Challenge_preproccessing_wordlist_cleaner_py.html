@@ -124,8 +124,8 @@
 <p id="n55" class="pln"><a href="#n55">55</a></p>
 <p id="n56" class="pln"><a href="#n56">56</a></p>
 <p id="n57" class="pln"><a href="#n57">57</a></p>
-<p id="n58" class="stm run hide_run"><a href="#n58">58</a></p>
-<p id="n59" class="pln"><a href="#n59">59</a></p>
+<p id="n58" class="pln"><a href="#n58">58</a></p>
+<p id="n59" class="stm run hide_run"><a href="#n59">59</a></p>
 <p id="n60" class="stm mis"><a href="#n60">60</a></p>
 <p id="n61" class="stm mis"><a href="#n61">61</a></p>
 <p id="n62" class="stm mis"><a href="#n62">62</a></p>
@@ -189,8 +189,8 @@
 <p id="t55" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t56" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t57" class="pln"><span class="com"># Todo: remember to remove</span><span class="strut">&nbsp;</span></p>
-<p id="t58" class="stm run hide_run"><span class="op">@</span><span class="nam">line_profiling</span><span class="op">.</span><span class="nam">profile</span><span class="op">(</span><span class="nam">follow</span><span class="op">=</span><span class="op">[</span><span class="nam">remove_words_with_invalid_char</span><span class="op">,</span> <span class="nam">remove_words_with_too_many_of_one_char</span><span class="op">]</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t59" class="pln"><span class="key">def</span> <span class="nam">get_clean_wordlist</span><span class="op">(</span><span class="nam">anagram_sentence</span><span class="op">,</span> <span class="nam">path_to_wordlist</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t58" class="pln"><span class="com"># @line_profiling.profile(follow=[remove_words_with_invalid_char, remove_words_with_too_many_of_one_char])</span><span class="strut">&nbsp;</span></p>
+<p id="t59" class="stm run hide_run"><span class="key">def</span> <span class="nam">get_clean_wordlist</span><span class="op">(</span><span class="nam">anagram_sentence</span><span class="op">,</span> <span class="nam">path_to_wordlist</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t60" class="stm mis">    <span class="nam">l_1</span> <span class="op">=</span> <span class="nam">remove_words_with_invalid_char</span><span class="op">(</span><span class="nam">file_reader</span><span class="op">.</span><span class="nam">read_file_into_list</span><span class="op">(</span><span class="nam">path_to_wordlist</span><span class="op">)</span><span class="op">,</span> <span class="nam">anagram_sentence</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t61" class="stm mis">    <span class="nam">l_2</span> <span class="op">=</span> <span class="nam">remove_words_with_too_many_of_one_char</span><span class="op">(</span><span class="nam">l_1</span><span class="op">,</span> <span class="nam">anagram_sentence</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t62" class="stm mis">    <span class="key">return</span> <span class="nam">l_2</span><span class="strut">&nbsp;</span></p>
@@ -204,7 +204,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.2</a>,
-            created at 2016-10-24 00:58
+            created at 2016-10-24 10:37
         </p>
     </div>
 </div>
