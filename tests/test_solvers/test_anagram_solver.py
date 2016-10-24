@@ -1,4 +1,4 @@
-from solvers import anagram_solver
+from solver import anagram_solver
 from hasher import md5_hasher
 import os
 
