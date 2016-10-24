@@ -1,5 +1,5 @@
 from hasher import md5_hasher
-from processing import search_algoritms as s_a
+from processing import word_checking
 from solver import anagram_solver
 
 
@@ -11,10 +11,10 @@ def test_check_three_tuples():
     sentence = "This is Sparta!"
     hashed_sentence = md5_hasher.md5_hash_sentence(sentence)
 
-    hashed_result = s_a.check_three_tuples(tuple1,
-                                           tuple2,
-                                           tuple3,
-                                           hashed_sentence)
+    hashed_result = word_checking.check_three_tuples(tuple1,
+                                                     tuple2,
+                                                     tuple3,
+                                                     hashed_sentence)
 
     assert hashed_result
 
@@ -27,10 +27,10 @@ def test_check_three_tuples_false():
     sentence = "This is not Sparta!"
     hashed_sentence = md5_hasher.md5_hash_sentence(sentence)
 
-    hashed_result = s_a.check_three_tuples(tuple1,
-                                           tuple2,
-                                           tuple3,
-                                           hashed_sentence)
+    hashed_result = word_checking.check_three_tuples(tuple1,
+                                                     tuple2,
+                                                     tuple3,
+                                                     hashed_sentence)
 
     assert not hashed_result
 
