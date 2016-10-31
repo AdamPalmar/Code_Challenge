@@ -30,7 +30,7 @@ Afterwards the individual characters in the words are mapped to prime numbers.
 
 The processing is then distributed to 4 processes.
 
-The processing loop consists of elementwise array multiplcation of the combinations of word prime number representation.
+The processing loop consists of elementwise array multiplication of the combinations of word prime number representation.
 Afterward a binary search is used to find values in the array that match prime product sum of the anagram sentence given.
 
 Lastly the possible word combinations are hashed and checked with given hash.
@@ -38,7 +38,7 @@ Lastly the possible word combinations are hashed and checked with given hash.
 ###Testing
 
 The tests of the program can be run using pytest, when standing in the /tests folder.
-The running the command below in a terminal.
+Then running the command below in a terminal.
 
 py.test --cov=test_word_prime_converter.py --cov=preproccessing --cov=fileIO --cov=md5_hashing
 --cov=processing --cov=solver --cov=prime_number_generator --cov=utilities --cov-report=term --pep8 --flakes --mccabe
@@ -55,5 +55,5 @@ There are still corner cases that are not tested yet though.
 
 The correct anagram sentence hash is found in about 0.34 sec on a i7-2700K.
 
-The below are the run speed of the process throughout optimization.
+Below are the run speeds of the process throughout optimization.
 660 sec -> 5.7 sec -> 2.3 sec -> 0.5 sec -> 0.34 sec
